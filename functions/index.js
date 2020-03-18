@@ -18,6 +18,8 @@ const {
   uploadImage,
   addUserDetails,
   getAuthenticatedUser,
+  getUserDetails,
+  markNotificationsRead,
 } = require('./handlers/users');
 
 //scream rountes
@@ -35,6 +37,8 @@ app.post('/login', login);
 app.post('/user', FBAuth, addUserDetails);
 app.post('/user/image', FBAuth, uploadImage);
 app.get('/user', FBAuth, getAuthenticatedUser);
+app.get('/user/:handle', getUserDetails);
+app.post('/notifications', FBAuth, markNotificationsRead);
 
 exports.api = functions.https.onRequest(app);
 
